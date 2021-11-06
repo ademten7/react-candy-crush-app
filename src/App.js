@@ -86,6 +86,26 @@ const App = () => {
     }
   };
 
+  //to move colors below
+  const moveIntoSquareBelow = () => {
+    //64-width ===>i cannot move the lasts squares to below they are static
+    for (let i = 0; i < 64 - width; i++) {
+      //to fill the empty squaere on top
+      const firstRow = [0, 1, 2, 3, 4, 5, 6, 7];
+      if (firstRow.includes(i) && currentColorArrangement[i] === "") {
+        let randomNumber = Math.floor(Math.random() * candyColors.length);
+        currentColorArrangement[i] = candyColors[randomNumber];
+      }
+
+      //if there is an empty square under the target color, assign to empty square target color
+      if (currentColorArrangement[i + width] === "") {
+        currentColorArrangement[i + width] = currentColorArrangement[i];
+        //and make the target color blank
+        currentColorArrangement[i] = "";
+      }
+    }
+  };
+
   //to create 64 items
   const createBoard = () => {
     const randomColorArrangement = [];
@@ -107,8 +127,9 @@ const App = () => {
       checkForColumnOfFour();
       checkForRowOfThree();
       checkForRowOfFour();
+      moveIntoSquareBelow();
       setCurrentColorArrangement([...currentColorArrangement]);
-    }, 100);
+    }, 1000);
 
     return () => clearInterval(timer);
   }, [
@@ -116,6 +137,7 @@ const App = () => {
     checkForColumnOfThree,
     checkForRowOfThree,
     checkForRowOfFour,
+    moveIntoSquareBelow,
     currentColorArrangement,
   ]);
   console.log(currentColorArrangement);
