@@ -1,1 +1,1 @@
-# Candy Crush in React
+# Candy Crush Game in React
