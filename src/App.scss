@@ -69,11 +69,17 @@
 
 @media (max-width: 576px) {
     .game {
-        width: 80px;
-        height: 80px;
+        width: 160px;
+        height: 160px;
     }
     .game img {
-        width: 10px;
-        height: 10px;
+        width: 20px;
+        height: 20px;
+    }
+    .header-image {
+        img {
+            width: 100px;
+            height: 70px;
+        }
     }
 }
