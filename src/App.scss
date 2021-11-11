@@ -66,3 +66,14 @@
 .btn {
     height: 50px;
 }
+
+@media (max-width: 576px) {
+    .game {
+        width: 80px;
+        height: 80px;
+    }
+    .game img {
+        width: 10px;
+        height: 10px;
+    }
+}
