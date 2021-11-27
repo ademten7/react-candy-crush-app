@@ -28,6 +28,11 @@ const App = () => {
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
 
+  if (scoreDisplay >= 200) {
+    alert("Congratulations!!! 🍭 You got 100 points. Push OK for Replay");
+    window.location.reload(false);
+  }
+
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -224,6 +229,11 @@ const App = () => {
     return () => clearInterval(timer);
   });
 
+  const complete = () => {
+    alert("The time finished 🙁. Push OK to play again!!!");
+    window.location.reload(false);
+  };
+
   return (
     <div className="App">
       <div className="app container">
@@ -252,14 +262,17 @@ const App = () => {
                 />
               ))}
             </div>
-            <ScoreBoard score={scoreDisplay} />
-            <button
-              type="button"
-              className="btn btn-success"
-              onClick={() => window.location.reload(false)}
-            >
-              REPLAY
-            </button>
+            <div className="score-replay">
+              <h6>Try to get 200 🍭 in 5 minutes</h6>
+              <ScoreBoard score={scoreDisplay} />
+              <button
+                type="button"
+                className="btn btn-success"
+                onClick={() => window.location.reload(false)}
+              >
+                REPLAY
+              </button>
+            </div>
           </div>
           <div className="timer">
             <ReactCountdownClock
@@ -267,7 +280,7 @@ const App = () => {
               color="#E664D1"
               alpha={0.9}
               size={300}
-              //  onComplete={myCallback}
+              onComplete={complete}
             />
           </div>
         </div>
