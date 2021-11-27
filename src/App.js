@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import ScoreBoard from "./components/ScoreBoard";
 import blueCandy from "./images/blue-candy.png";
 import greenCandy from "./images/green-candy.png";
@@ -11,6 +11,8 @@ import leo from "./images/Leo.jpg";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ReactCountdownClock from "react-countdown-clock";
+import Levels from "./components/Levels";
+import { MyContext } from "./Context/context";
 
 const width = 8;
 const candyColors = [
@@ -27,6 +29,8 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
+  const { timer, setTimer, candy, setCandy, note, SetNote } =
+    useContext(MyContext);
 
   if (scoreDisplay >= 200) {
     alert("Congratulations!!! 🍭 You got 100 points. Push OK for Replay");
@@ -228,11 +232,16 @@ const App = () => {
     }, 100);
     return () => clearInterval(timer);
   });
-
+  //time consume
   const complete = () => {
     alert("The time finished 🙁. Push OK to play again!!!");
     window.location.reload(false);
   };
+
+  // //start Timer
+  // const startTimer = () => {
+  //   SetTimer(false);
+  // };
 
   return (
     <div className="App">
@@ -242,6 +251,7 @@ const App = () => {
           <h1 className="header">Sinem's Candy Crush Game</h1>
         </div>
         <div className="timer-board">
+          <Levels />
           <div className="game-scoreboard">
             <div className="game">
               {currentColorArrangement.map((candyColor, index) => (
@@ -263,7 +273,7 @@ const App = () => {
               ))}
             </div>
             <div className="score-replay">
-              <h6>Try to get 200 🍭 in 5 minutes</h6>
+              <h6>Try to get 200 🍭 </h6>
               <ScoreBoard score={scoreDisplay} />
               <button
                 type="button"
@@ -279,9 +289,15 @@ const App = () => {
               seconds={300}
               color="#E664D1"
               alpha={0.9}
-              size={300}
+              size={200}
               onComplete={complete}
+              paused={timer}
+              pausedText="start"
             />
+            {/* <button className="timer-start" onClick={startTimer}>
+              Start Timer
+            </button> */}
+            {/* <button>Stop</button> */}
           </div>
         </div>
       </div>
