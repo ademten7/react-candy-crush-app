@@ -10,6 +10,7 @@ import blank from "./images/blank.png";
 import leo from "./images/Leo.jpg";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import ReactCountdownClock from "react-countdown-clock";
 
 const width = 8;
 const candyColors = [
@@ -230,34 +231,45 @@ const App = () => {
           <img src={leo} alt="leo" width="300" height="200" />
           <h1 className="header">Sinem's Candy Crush Game</h1>
         </div>
-        <div className="game-scoreboard">
-          <div className="game">
-            {currentColorArrangement.map((candyColor, index) => (
-              <img
-                key={index}
-                src={candyColor}
-                alt={candyColor}
-                // data-id={index}==> a custom attribute that stores data.
-                //it gives which element we will drag
-                data-id={index}
-                draggable={true}
-                onDragStart={dragStart}
-                onDragOver={(e) => e.preventDefault()}
-                onDragEnter={(e) => e.preventDefault()}
-                onDragLeave={(e) => e.preventDefault()}
-                onDrop={dragDrop}
-                onDragEnd={dragEnd}
-              />
-            ))}
+        <div className="timer-board">
+          <div className="game-scoreboard">
+            <div className="game">
+              {currentColorArrangement.map((candyColor, index) => (
+                <img
+                  key={index}
+                  src={candyColor}
+                  alt={candyColor}
+                  // data-id={index}==> a custom attribute that stores data.
+                  //it gives which element we will drag
+                  data-id={index}
+                  draggable={true}
+                  onDragStart={dragStart}
+                  onDragOver={(e) => e.preventDefault()}
+                  onDragEnter={(e) => e.preventDefault()}
+                  onDragLeave={(e) => e.preventDefault()}
+                  onDrop={dragDrop}
+                  onDragEnd={dragEnd}
+                />
+              ))}
+            </div>
+            <ScoreBoard score={scoreDisplay} />
+            <button
+              type="button"
+              className="btn btn-success"
+              onClick={() => window.location.reload(false)}
+            >
+              REPLAY
+            </button>
           </div>
-          <ScoreBoard score={scoreDisplay} />
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={() => window.location.reload(false)}
-          >
-            REPLAY
-          </button>
+          <div className="timer">
+            <ReactCountdownClock
+              seconds={300}
+              color="#E664D1"
+              alpha={0.9}
+              size={300}
+              //  onComplete={myCallback}
+            />
+          </div>
         </div>
       </div>
     </div>
