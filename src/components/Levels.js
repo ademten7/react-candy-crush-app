@@ -1,11 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Modal } from "react-bootstrap";
+import { MyContext } from "../Context/context";
 
 const Levels = () => {
   //Modal
+  const { setStart, setCandy, SetNote, SetSecond } = useContext(MyContext);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  //Easy
+  const easy = () => {
+    setStart(false);
+    setShow(false);
+    SetSecond(300);
+    setCandy(100);
+    SetNote(`Try to get 100 🍭 in 5 minutes`);
+  };
+
+  //Hard
+  const hard = () => {
+    setStart(false);
+    setShow(false);
+    SetSecond(210);
+    setCandy(150);
+    SetNote(`Try to get 150 🍭 in 3:30 minutes`);
+  };
+
+  //Very Hard
+  const veryHard = () => {
+    setStart(false);
+    setShow(false);
+    SetSecond(30);
+    setCandy(200);
+    SetNote(`Try to get 200 🍭 in 2:50 minutes`);
+  };
+
   return (
     <div>
       <button className="choose-level" onClick={handleShow}>
@@ -18,13 +48,13 @@ const Levels = () => {
         </Modal.Header>
         <Modal.Body>Choose Your Level And Start</Modal.Body>
         <Modal.Footer>
-          <button className="easy" onClick={handleClose}>
+          <button className="easy" onClick={easy}>
             EASY
           </button>
-          <button className="hard" onClick={handleClose}>
+          <button className="hard" onClick={hard}>
             HARD
           </button>
-          <button className="very-hard" onClick={handleClose}>
+          <button className="very-hard" onClick={veryHard}>
             VERY HARD
           </button>
         </Modal.Footer>

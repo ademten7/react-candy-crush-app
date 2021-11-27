@@ -29,13 +29,7 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
-  const { timer, setTimer, candy, setCandy, note, SetNote } =
-    useContext(MyContext);
-
-  if (scoreDisplay >= 200) {
-    alert("Congratulations!!! 🍭 You got 100 points. Push OK for Replay");
-    window.location.reload(false);
-  }
+  const { start, note, second, candy } = useContext(MyContext);
 
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
@@ -105,6 +99,12 @@ const App = () => {
       }
     }
   };
+
+  if (scoreDisplay >= candy) {
+    alert("Congratulations!!! 🍭 You got 100 points. Push OK for Replay");
+    setScoreDisplay(0);
+    window.location.reload(false);
+  }
 
   const checkForRowOfThree = () => {
     for (let i = 0; i < 64; i++) {
@@ -234,7 +234,9 @@ const App = () => {
   });
   //time consume
   const complete = () => {
-    alert("The time finished 🙁. Push OK to play again!!!");
+    alert(
+      "Sorry, You couldn't get candies in time 🙁. Push OK to play again!!!"
+    );
     window.location.reload(false);
   };
 
@@ -250,6 +252,8 @@ const App = () => {
           <img src={leo} alt="leo" width="300" height="200" />
           <h1 className="header">Sinem's Candy Crush Game</h1>
         </div>
+        <h6 className="Note">{note} </h6>
+
         <div className="timer-board">
           <Levels />
           <div className="game-scoreboard">
@@ -273,7 +277,6 @@ const App = () => {
               ))}
             </div>
             <div className="score-replay">
-              <h6>Try to get 200 🍭 </h6>
               <ScoreBoard score={scoreDisplay} />
               <button
                 type="button"
@@ -286,12 +289,12 @@ const App = () => {
           </div>
           <div className="timer">
             <ReactCountdownClock
-              seconds={300}
+              seconds={second}
               color="#E664D1"
               alpha={0.9}
               size={200}
               onComplete={complete}
-              paused={timer}
+              paused={start}
               pausedText="start"
             />
             {/* <button className="timer-start" onClick={startTimer}>
