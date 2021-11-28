@@ -29,8 +29,11 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
-  const { start, note, second, candy } = useContext(MyContext);
+  const { start, note, second } = useContext(MyContext);
 
+  // if (scoreDisplay >= candy) {
+  //   window.location.reload(true);
+  // }
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -99,12 +102,6 @@ const App = () => {
       }
     }
   };
-
-  if (scoreDisplay >= candy) {
-    alert("Congratulations!!! 🍭 You got 100 points. Push OK for Replay");
-    setScoreDisplay(0);
-    window.location.reload(false);
-  }
 
   const checkForRowOfThree = () => {
     for (let i = 0; i < 64; i++) {

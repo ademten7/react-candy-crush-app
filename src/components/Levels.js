@@ -31,7 +31,7 @@ const Levels = () => {
   const veryHard = () => {
     setStart(false);
     setShow(false);
-    SetSecond(30);
+    SetSecond(150);
     setCandy(200);
     SetNote(`Try to get 200 🍭 in 2:50 minutes`);
   };
