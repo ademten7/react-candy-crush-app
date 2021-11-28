@@ -3,7 +3,7 @@ import { MyContext } from "./context";
 
 const Container = (props) => {
   const [start, setStart] = useState(true);
-  const [candy, setCandy] = useState(0);
+  const [candy, setCandy] = useState(500);
   const [note, SetNote] = useState("");
   const [second, SetSecond] = useState(0);
 

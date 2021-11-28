@@ -29,11 +29,15 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
-  const { start, note, second } = useContext(MyContext);
+  const { start, note, second, candy } = useContext(MyContext);
 
-  // if (scoreDisplay >= candy) {
-  //   window.location.reload(true);
-  // }
+  if (scoreDisplay >= candy) {
+    alert(
+      `🎉 🎉 🎉 🎉 🎉 CONGRATULATIONS  🎉 🎉 🎉 🎉 🎉 🎉 You got ${candy}🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭🍭`
+    );
+    window.location.reload();
+  }
+
   const checkForColumnOfFour = () => {
     for (let i = 0; i <= 39; i++) {
       const columnOfFour = [i, i + width, i + width * 2, i + width * 3];
@@ -278,7 +282,7 @@ const App = () => {
               <button
                 type="button"
                 className="btn btn-success"
-                onClick={() => window.location.reload(false)}
+                onClick={() => window.location.reload()}
               >
                 REPLAY
               </button>
