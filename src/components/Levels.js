@@ -39,14 +39,17 @@ const Levels = () => {
   return (
     <div>
       <button className="choose-level" onClick={handleShow}>
-        Choose Your Level
+        Enter Name-Choose Level
       </button>
 
       <Modal show={show} onHide={handleClose} animation={true}>
         <Modal.Header closeButton>
           <Modal.Title>LEVELS</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Choose Your Level And Start</Modal.Body>
+        <Modal.Body>
+          Enter Your Name and Choose a Level
+          <input type="text" placeholder="Enter your name here" />
+        </Modal.Body>
         <Modal.Footer>
           <button className="easy" onClick={easy}>
             EASY
