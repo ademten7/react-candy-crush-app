@@ -37,9 +37,9 @@ const Levels = () => {
   };
 
   return (
-    <div>
+    <>
       <button className="choose-level" onClick={handleShow}>
-        Enter Name-Choose Level
+        Choose Level
       </button>
 
       <Modal show={show} onHide={handleClose} animation={true}>
@@ -62,7 +62,7 @@ const Levels = () => {
           </button>
         </Modal.Footer>
       </Modal>
-    </div>
+    </>
   );
 };
 
