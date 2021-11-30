@@ -248,15 +248,14 @@ const App = () => {
 
   return (
     <div className="App">
-      <div className="app container">
+      <div className="app ">
         <div className="header-image">
-          <img src={leo} alt="leo" width="300" height="200" />
+          <img src={leo} alt="leo" width="200" height="150" />
           <h1 className="header">Sinem's Candy Crush Game</h1>
         </div>
         <h6 className="Note">{note} </h6>
 
         <div className="timer-board">
-          <Levels />
           <div className="game-scoreboard">
             <div className="game">
               {currentColorArrangement.map((candyColor, index) => (
@@ -266,6 +265,7 @@ const App = () => {
                   alt={candyColor}
                   // data-id={index}==> a custom attribute that stores data.
                   //it gives which element we will drag
+                  //touch
                   data-id={index}
                   draggable={true}
                   onDragStart={dragStart}
@@ -274,6 +274,7 @@ const App = () => {
                   onDragLeave={(e) => e.preventDefault()}
                   onDrop={dragDrop}
                   onDragEnd={dragEnd}
+                  // onTouch={(e) => console.log(e.target)}
                 />
               ))}
             </div>
@@ -281,27 +282,28 @@ const App = () => {
               <ScoreBoard score={scoreDisplay} />
               <button
                 type="button"
-                className="btn btn-success"
+                className="score-board replay"
                 onClick={() => window.location.reload()}
               >
                 REPLAY
               </button>
-            </div>
-          </div>
-          <div className="timer">
-            <ReactCountdownClock
-              seconds={second}
-              color="#E664D1"
-              alpha={0.9}
-              size={200}
-              onComplete={complete}
-              paused={start}
-              pausedText="start"
-            />
-            {/* <button className="timer-start" onClick={startTimer}>
+              <Levels />
+              <div className="timer">
+                <ReactCountdownClock
+                  seconds={second}
+                  color="#E664D1"
+                  alpha={0.9}
+                  size={200}
+                  onComplete={complete}
+                  paused={start}
+                  pausedText="start"
+                />
+                {/* <button className="timer-start" onClick={startTimer}>
               Start Timer
             </button> */}
-            {/* <button>Stop</button> */}
+                {/* <button>Stop</button> */}
+              </div>
+            </div>
           </div>
         </div>
       </div>
