@@ -14,7 +14,7 @@ import ReactCountdownClock from "react-countdown-clock";
 import Levels from "./components/Levels";
 import { MyContext } from "./Context/context";
 import useSound from "use-sound";
-import dropSound from "./components/sound/getsound.wav";
+import dropSound from "./components/sound/bomb.mp3";
 
 const width = 8;
 const candyColors = [
@@ -299,8 +299,8 @@ const App = () => {
               <div className="timer">
                 <ReactCountdownClock
                   seconds={second}
-                  color="#E664D1"
-                  alpha={0.9}
+                  color="#564256"
+                  alpha={1}
                   size={200}
                   onComplete={complete}
                   paused={start}
