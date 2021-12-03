@@ -13,6 +13,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import ReactCountdownClock from "react-countdown-clock";
 import Levels from "./components/Levels";
 import { MyContext } from "./Context/context";
+import useSound from "use-sound";
+import dropSound from "./components/sound/getsound.wav";
 
 const width = 8;
 const candyColors = [
@@ -29,6 +31,7 @@ const App = () => {
   const [squareBeingDragged, setSquareBeingDragged] = useState(null);
   const [squareBeingReplaced, setSquareBeingReplaced] = useState(null);
   const [scoreDisplay, setScoreDisplay] = useState(0);
+  const [play] = useSound(dropSound);
   const { start, note, second, candy } = useContext(MyContext);
 
   if (scoreDisplay >= candy) {
@@ -197,6 +200,7 @@ const App = () => {
     ) {
       setSquareBeingDragged(null);
       setSquareBeingReplaced(null);
+      play();
     } else {
       currentColorArrangement[squareBeingReplacedId] =
         squareBeingReplaced.getAttribute("src");
@@ -273,6 +277,10 @@ const App = () => {
                   onDragEnter={(e) => e.preventDefault()}
                   onDragLeave={(e) => e.preventDefault()}
                   onDrop={dragDrop}
+                  // onDrop={() => {
+                  //   dragDrop();
+                  //   play();
+                  // }}
                   onDragEnd={dragEnd}
                   // onTouch={(e) => console.log(e.target)}
                 />
